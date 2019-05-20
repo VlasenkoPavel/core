@@ -1,10 +1,11 @@
 {
   "name": "core",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "./node_modules/.bin/tslint --force 'src/**/*.ts' && ./node_modules/.bin/tsc --project tsconfig.json",
+    "build": "./node_modules/.bin/tsc --project tsconfig.json",
     "build-dev": "./node_modules/.bin/tsc --watch --project tsconfig.json",
     "tslint": "./node_modules/.bin/tslint 'src/**/*.ts'"
   },

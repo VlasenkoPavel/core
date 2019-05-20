@@ -1,5 +1,5 @@
 import * as log4js from 'log4js';
-import { LogConfig, LogCategoryConfig } from '@c7s/config';
+import { LogConfig, LogCategoryConfig } from '@chaika/config';
 
 export class LoggerFactory {
     protected readonly logConfig!: LogConfig;

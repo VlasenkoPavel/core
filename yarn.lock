@@ -2,15 +2,6 @@
 # yarn lockfile v1
 
 
-"@c7s/config@c7s/config.git#master":
-  version "0.0.1"
-  resolved "https://codeload.github.com/c7s/config/tar.gz/2eaf518e7a20f3effcccc9f8511ee7adfa3ead12"
-  dependencies:
-    class-transformer "0.1.9"
-    class-validator "^0.8.1"
-    deep-extend "0.6.0"
-    inversify "4.13.0"
-
 "@c7s/http-errors@c7s/http-errors#master":
   version "0.0.1"
   resolved "https://codeload.github.com/c7s/http-errors/tar.gz/fc66523bedf191128d47dda79c24c8e440b3a4ee"
@@ -680,11 +671,6 @@ inherits@2, inherits@2.0.3, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
-
-inversify@4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.13.0.tgz#0ab40570bfa4474b04d5b919bbab3a4f682a72f5"
-  integrity sha512-O5d8y7gKtyRwrvTLZzYET3kdFjqUy58sGpBYMARF13mzqDobpfBXVOPLH7HmnD2VR6Q+1HzZtslGvsdQfeb0SA==
 
 inversify@5.0.1, inversify@^5.0.0:
   version "5.0.1"

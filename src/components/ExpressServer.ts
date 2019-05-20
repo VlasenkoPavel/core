@@ -23,7 +23,10 @@ export class ExpressServer {
         this.config = config;
         const controllers = [this.makePath(this.config.controllers)];
 
-        container && useContainer(container);
+        if (container) {
+            useContainer(container);
+        }
+
         this.express = createExpressServer({
             controllers,
             middlewares,

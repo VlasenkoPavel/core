@@ -7,7 +7,9 @@ class ExpressServer {
         this.logger = logger;
         this.config = config;
         const controllers = [this.makePath(this.config.controllers)];
-        container && routing_controllers_1.useContainer(container);
+        if (container) {
+            routing_controllers_1.useContainer(container);
+        }
         this.express = routing_controllers_1.createExpressServer({
             controllers,
             middlewares,

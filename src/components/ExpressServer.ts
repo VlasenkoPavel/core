@@ -1,11 +1,11 @@
 import * as express from 'express';
 import * as path from 'path';
 import { Logger } from 'log4js';
-import { createExpressServer } from 'routing-controllers';
-import { interfaces } from 'inversify';
+import { createExpressServer, useContainer } from 'routing-controllers';
 import { Server } from 'http';
 
 import { ServerConfig } from './config-validators/ServerConfig';
+import { IContainer } from 'types';
 
 export class ExpressServer {
     public readonly express: express.Application;
@@ -17,12 +17,13 @@ export class ExpressServer {
         config: ServerConfig,
         middlewares: string[] | Function[],
         logger: Logger,
-        container?: interfaces.Context['container']
+        container?: IContainer
     ) {
         this.logger = logger;
         this.config = config;
         const controllers = [this.makePath(this.config.controllers)];
 
+        container && useContainer(container);
         this.express = createExpressServer({
             controllers,
             middlewares,
@@ -30,7 +31,7 @@ export class ExpressServer {
         });
     }
 
-    public async start() {
+    public async start(): Promise<void> {
         const { host, port } = this.config;
 
         try {
@@ -57,7 +58,7 @@ export class ExpressServer {
         this.logger.info(`Server started at http://${host}:${port}`);
     }
 
-    public getHttpServer() {
+    public getHttpServer(): Server {
         if (!this.server) {
             throw new Error('Server not started');
         }
@@ -65,11 +66,11 @@ export class ExpressServer {
         return this.server;
     }
 
-    public stop() {
+    public stop(): void {
         this.server.close();
     }
 
-    private makePath(filePath: string) {
+    private makePath(filePath: string): string {
         return path.resolve(__dirname, '../../../', filePath);
     }
 }

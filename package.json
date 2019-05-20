@@ -1,13 +1,15 @@
 {
   "name": "core",
   "version": "1.0.0",
-  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "./node_modules/.bin/tslint --force 'src/**/*.ts' && ./node_modules/.bin/tsc --project tsconfig.build.json",
-    "build-dev": "./node_modules/.bin/tsc --watch --project tsconfig.build.json",
+    "build": "./node_modules/.bin/tslint --force 'src/**/*.ts' && ./node_modules/.bin/tsc --project tsconfig.json",
+    "build-dev": "./node_modules/.bin/tsc --watch --project tsconfig.json",
     "tslint": "./node_modules/.bin/tslint 'src/**/*.ts'"
   },
   "dependencies": {
+    "@c7s/http-errors": "c7s/http-errors#master",
     "reflect-metadata": "0.1.12",
     "class-validator": "^0.8.1",
     "typeorm": "0.2.11",

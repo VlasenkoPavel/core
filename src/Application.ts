@@ -1,5 +1,6 @@
 import { ExpressServer } from './components/ExpressServer';
 import { IConnector } from './types';
+import { Server } from 'http';
 
 export class Application {
     private connector: IConnector;
@@ -16,13 +17,13 @@ export class Application {
         await this.server.start();
     }
 
-    public getHttpServer() {
+    public getHttpServer(): Server {
         return this.server.getHttpServer();
     }
 
-    public async stop() {
+    public async stop(): Promise<void> {
         await Promise.all([this.connector.disconnect(), this.server.stop()]);
     }
 
-    private async beforeRunHook() {}
+    private async beforeRunHook(): Promise<void> {}
 }

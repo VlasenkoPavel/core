@@ -7,7 +7,7 @@ export class ConsoleApp {
         this.connector = connector;
     }
 
-    public async run(runnable: IRunnable) {
+    public async run(runnable: IRunnable): Promise<void> {
         await this.connector.connect();
 
         try {
@@ -17,7 +17,7 @@ export class ConsoleApp {
         }
     }
 
-    public async end() {
+    public async end(): Promise<void>  {
         await this.connector.disconnect();
     }
 }

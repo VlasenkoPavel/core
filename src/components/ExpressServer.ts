@@ -5,7 +5,7 @@ import { createExpressServer, useContainer } from 'routing-controllers';
 import { Server } from 'http';
 
 import { ServerConfig } from '@chaika/config';
-import { IContainer } from 'types';
+import { IContainer } from '../types';
 
 export class ExpressServer {
     public readonly express: express.Application;

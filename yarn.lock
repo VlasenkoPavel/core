@@ -17,6 +17,15 @@
   dependencies:
     class-validator "^0.8.1"
 
+"@chaika/config@VlasenkoPavel/config#master":
+  version "0.0.1"
+  resolved "https://codeload.github.com/VlasenkoPavel/config/tar.gz/23e3c30c44a45ca216ae92646b0aaa95c09db3b6"
+  dependencies:
+    class-transformer "0.1.9"
+    class-validator "^0.8.1"
+    deep-extend "0.6.0"
+    inversify "5.0.1"
+
 "@fimbul/bifrost@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@fimbul/bifrost/-/bifrost-0.17.0.tgz#f0383ba7e40992e3193dc87e2ddfde2ad62a9cf4"
@@ -677,7 +686,7 @@ inversify@4.13.0:
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.13.0.tgz#0ab40570bfa4474b04d5b919bbab3a4f682a72f5"
   integrity sha512-O5d8y7gKtyRwrvTLZzYET3kdFjqUy58sGpBYMARF13mzqDobpfBXVOPLH7HmnD2VR6Q+1HzZtslGvsdQfeb0SA==
 
-inversify@^5.0.0:
+inversify@5.0.1, inversify@^5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.0.1.tgz#500d709b1434896ce5a0d58915c4a4210e34fb6e"
   integrity sha512-Ieh06s48WnEYGcqHepdsJUIJUXpwH5o5vodAX+DK2JA/gjy4EbEcQZxw+uFfzysmKjiLXGYwNG3qDZsKVMcINQ==

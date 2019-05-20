@@ -1,6 +1,6 @@
 import { Connection, createConnection, Logger } from 'typeorm';
 import { IConnector } from '../types';
-import { PostgresConfig } from './config-validators/PostgresConfig';
+import { PostgresConfig } from '@chaika/config';
 
 export class DbConnector implements IConnector {
     private config: PostgresConfig;

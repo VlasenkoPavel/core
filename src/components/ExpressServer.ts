@@ -4,7 +4,7 @@ import { Logger } from 'log4js';
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { Server } from 'http';
 
-import { ServerConfig } from './config-validators/ServerConfig';
+import { ServerConfig } from '@chaika/config';
 import { IContainer } from 'types';
 
 export class ExpressServer {

@@ -3,8 +3,8 @@ import { Request, Response, NextFunction } from 'express';
 import { ValidationError } from 'class-validator';
 import { HttpError as CoreHttpError, ClassValidatorError } from '@c7s/http-errors';
 export declare class ErrorHandlingMiddleware {
-    protected logger: Logger;
-    constructor(logger: Logger);
+    private static logger;
+    static setLogger(logger: Logger): void;
     error(error: Error, {}: Request, response: Response, next: NextFunction): void;
     protected extractError(error: Error): Error;
     protected logError(error: Error): void;

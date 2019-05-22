@@ -36,10 +36,10 @@ type BodyParserError = {
 
 @Middleware({ type: 'after' })
 export class ErrorHandlingMiddleware {
-    protected logger!: Logger;
+    private static logger: Logger;
 
-    constructor(logger: Logger) {
-        this.logger = logger;
+    public static setLogger(logger: Logger) {
+        ErrorHandlingMiddleware.logger = logger;
     }
 
     public error(error: Error, {  }: Request, response: Response, next: NextFunction) {
@@ -70,7 +70,9 @@ export class ErrorHandlingMiddleware {
 
     protected logError(error: Error): void {
         const code = this.identifyHttpCode(error);
-        code === HttpCode.InternalServer ? this.logger.fatal(error as any) : this.logger.error(error as any);
+        code === HttpCode.InternalServer
+            ? ErrorHandlingMiddleware.logger.fatal(error as any)
+            : ErrorHandlingMiddleware.logger.error(error as any);
     }
 
     protected createCoreHttpError(error: Error): CoreHttpError | null {

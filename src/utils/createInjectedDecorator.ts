@@ -1,6 +1,7 @@
 interface Constructor extends Function { new (...args: any[]): any; }
 
-export const createInjectedDecorator = (context: Object): ClassDecorator => <T extends Function>(target: T): any => {
+export const createInjectedDecorator = (context: Object): ClassDecorator =>
+<TFunction extends Function>(target: TFunction): any => {
     const original: Constructor = target as unknown as Constructor;
 
     class Alternate {

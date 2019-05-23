@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { DbConnector, TypeormLogger, LoggerFactory } from '../';
+import { DbConnector, TypeormLogger, LoggerFactory, mergeContexts } from '../';
 import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chaika/config';
 
 export abstract class CommonAppContext {
@@ -35,6 +35,10 @@ export abstract class CommonAppContext {
     public async configure(): Promise<void> {
         this.configs.log = await this.configFactory.create(LogConfig);
         await this.configurePostgres();
+    }
+
+    public merge<T extends object>(context: T): this & T {
+        return mergeContexts(this, context);
     }
 
     protected makePath(filePath: string) {

@@ -13,6 +13,7 @@ export declare abstract class CommonAppContext {
     readonly typeOrmLogger: TypeormLogger;
     readonly dbConnector: DbConnector;
     configure(): Promise<void>;
+    merge<T extends object>(context: T): this & T;
     protected makePath(filePath: string): string;
     private configurePostgres;
 }

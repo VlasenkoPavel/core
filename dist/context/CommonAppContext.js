@@ -26,6 +26,9 @@ class CommonAppContext {
         this.configs.log = await this.configFactory.create(config_1.LogConfig);
         await this.configurePostgres();
     }
+    merge(context) {
+        return __1.mergeContexts(this, context);
+    }
     makePath(filePath) {
         return path.resolve(__dirname, CommonAppContext.pathRelation, filePath);
     }

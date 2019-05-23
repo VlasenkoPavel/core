@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as path from 'path';
 import { Logger } from 'log4js';
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { Server } from 'http';
@@ -21,14 +20,13 @@ export class ExpressServer {
     ) {
         this.logger = logger;
         this.config = config;
-        const controllers = [this.makePath(this.config.controllers)];
 
         if (container) {
             useContainer(container);
         }
 
         this.express = createExpressServer({
-            controllers,
+            controllers: [this.config.controllers],
             middlewares,
             defaultErrorHandler: false
         });
@@ -71,9 +69,5 @@ export class ExpressServer {
 
     public stop(): void {
         this.server.close();
-    }
-
-    private makePath(filePath: string): string {
-        return path.resolve(__dirname, '../../../', filePath);
     }
 }

@@ -8,7 +8,7 @@ class CommonAppContext {
         this.configs = {};
     }
     get configFileChain() {
-        return new config_1.ConfigFileChain(this.makePath('../config'), process.env.SM_ENV);
+        return new config_1.ConfigFileChain(this.makePath(CommonAppContext.configDir), process.env.SM_ENV);
     }
     get configFactory() {
         return new config_1.ConfigFactory(this.configFileChain);
@@ -31,10 +31,11 @@ class CommonAppContext {
     }
     async configurePostgres() {
         this.configs.postgres = await this.configFactory.create(config_1.PostgresConfig);
-        this.configs.postgres.entities = this.configs.postgres.entities.map(this.makePath);
-        this.configs.postgres.migrations = this.configs.postgres.migrations.map(this.makePath);
+        this.configs.postgres.entities = this.configs.postgres.entities.map(path => this.makePath(path));
+        this.configs.postgres.migrations = this.configs.postgres.migrations.map(path => this.makePath(path));
     }
 }
 CommonAppContext.pathPrefix = '../../../../';
+CommonAppContext.configDir = './config';
 exports.CommonAppContext = CommonAppContext;
 //# sourceMappingURL=CommonAppContext.js.map

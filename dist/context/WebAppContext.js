@@ -41,6 +41,7 @@ class WebAppContext extends CommonAppContext_1.CommonAppContext {
     async configure() {
         await super.configure();
         this.configs.server = await this.configFactory.create(config_1.ServerConfig);
+        this.configs.server.controllers = this.makePath(this.configs.server.controllers);
     }
 }
 exports.WebAppContext = WebAppContext;

@@ -1,17 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const routing_controllers_1 = require("routing-controllers");
 class ExpressServer {
     constructor(config, middlewares, logger, container) {
         this.logger = logger;
         this.config = config;
-        const controllers = [this.makePath(this.config.controllers)];
         if (container) {
             routing_controllers_1.useContainer(container);
         }
         this.express = routing_controllers_1.createExpressServer({
-            controllers,
+            controllers: [this.config.controllers],
             middlewares,
             defaultErrorHandler: false
         });
@@ -47,9 +45,6 @@ class ExpressServer {
     }
     stop() {
         this.server.close();
-    }
-    makePath(filePath) {
-        return path.resolve(__dirname, '../../../', filePath);
     }
 }
 exports.ExpressServer = ExpressServer;

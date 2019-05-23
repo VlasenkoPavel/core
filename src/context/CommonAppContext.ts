@@ -5,6 +5,7 @@ import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chai
 
 export abstract class CommonAppContext {
     public static pathPrefix =  '../../../../';
+    public static configDir = './config';
 
     protected configs: {
         log?: LogConfig,
@@ -12,7 +13,7 @@ export abstract class CommonAppContext {
     } = {};
 
     get configFileChain(): ConfigFileChain {
-        return new ConfigFileChain(this.makePath('../config'), process.env.SM_ENV as string);
+        return new ConfigFileChain(this.makePath(CommonAppContext.configDir), process.env.SM_ENV as string);
     }
 
     get configFactory(): ConfigFactory {
@@ -42,7 +43,7 @@ export abstract class CommonAppContext {
 
     private async configurePostgres(): Promise<void> {
         this.configs.postgres = await this.configFactory.create(PostgresConfig);
-        this.configs.postgres.entities = this.configs.postgres.entities.map(this.makePath);
-        this.configs.postgres.migrations = this.configs.postgres.migrations.map(this.makePath);
+        this.configs.postgres.entities = this.configs.postgres.entities.map(path => this.makePath(path));
+        this.configs.postgres.migrations = this.configs.postgres.migrations.map(path => this.makePath(path));
     }
 }

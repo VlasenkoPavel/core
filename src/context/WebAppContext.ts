@@ -55,5 +55,6 @@ export class WebAppContext extends CommonAppContext implements IContainer {
     public async configure(): Promise<void> {
         await super.configure();
         this.configs.server = await this.configFactory.create(ServerConfig);
+        this.configs.server.controllers = this.makePath(this.configs.server.controllers);
     }
 }

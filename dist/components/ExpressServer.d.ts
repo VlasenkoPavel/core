@@ -13,5 +13,4 @@ export declare class ExpressServer {
     start(): Promise<void>;
     getHttpServer(): Server;
     stop(): void;
-    private makePath;
 }

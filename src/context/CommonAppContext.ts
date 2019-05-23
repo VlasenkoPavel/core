@@ -38,7 +38,7 @@ export abstract class CommonAppContext {
     }
 
     protected makePath(filePath: string) {
-        return path.resolve(__dirname, '../../../../', filePath);
+        return path.resolve(__dirname, '../../../../../', filePath);
     }
 
     private async configurePostgres(): Promise<void> {

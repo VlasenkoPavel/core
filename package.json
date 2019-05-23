@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@chaika/core",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "main": "dist/index.js",

@@ -4,9 +4,9 @@ exports.createInjectedDecorator = (context) => (target) => {
     const original = target;
     class Alternate {
         constructor(constructor, args) {
-            const inst = new constructor;
-            Object.assign(this, inst);
-            const keys = Object.getOwnPropertyNames(inst);
+            const instance = new constructor(...args);
+            Object.assign(this, instance);
+            const keys = Object.getOwnPropertyNames(instance);
             keys.forEach(key => {
                 if (!this[key]) {
                     this[key] = context[key];
@@ -15,7 +15,9 @@ exports.createInjectedDecorator = (context) => (target) => {
             this.__proto__ = constructor.prototype;
         }
     }
-    const newConstructor = (...args) => new Alternate(original, args);
+    const newConstructor = function (...args) {
+        return new Alternate(original, args);
+    };
     newConstructor.prototype = original.prototype;
     return newConstructor;
 };

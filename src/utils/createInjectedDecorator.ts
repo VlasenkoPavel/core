@@ -6,9 +6,9 @@ export const createInjectedDecorator = (context: Object): ClassDecorator =>
 
     class Alternate {
         constructor(constructor: Constructor, args: any[]) {
-            const inst = new constructor;
-            Object.assign(this, inst);
-            const keys = Object.getOwnPropertyNames(inst);
+            const instance = new constructor(...args);
+            Object.assign(this, instance);
+            const keys = Object.getOwnPropertyNames(instance);
 
             keys.forEach(key => {
                 if (!this[key]) {
@@ -20,7 +20,10 @@ export const createInjectedDecorator = (context: Object): ClassDecorator =>
         }
     }
 
-    const newConstructor = (...args: any[]) => new Alternate(original, args);
+    const newConstructor = function(...args: any[]) {
+        return new Alternate(original, args);
+    };
+
     newConstructor.prototype = original.prototype;
 
     return newConstructor;

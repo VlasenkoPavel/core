@@ -5,8 +5,8 @@ export class LoggerFactory {
     protected readonly logConfig!: LogConfig;
     protected isLoggerLibInitialized = false;
 
-    constructor(consfig: LogConfig) {
-        this.logConfig = consfig;
+    constructor(config: LogConfig) {
+        this.logConfig = config;
     }
 
     public create(category: string) {

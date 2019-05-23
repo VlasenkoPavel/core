@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const log4js = require("log4js");
 class LoggerFactory {
-    constructor(consfig) {
+    constructor(config) {
         this.isLoggerLibInitialized = false;
-        this.logConfig = consfig;
+        this.logConfig = config;
     }
     create(category) {
         if (!this.isLoggerLibInitialized) {

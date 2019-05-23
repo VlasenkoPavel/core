@@ -10,3 +10,7 @@ export interface IConnector {
 export interface IContainer {
     get(someClass: any): any;
 }
+
+export interface Class<T = object, P = any> extends Function {
+    new (...args: P[]): T;
+}

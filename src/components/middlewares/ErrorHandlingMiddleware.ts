@@ -36,9 +36,9 @@ type BodyParserError = {
 
 @Middleware({ type: 'after' })
 export class ErrorHandlingMiddleware {
-    protected logger!: Logger;
+    protected static logger: Logger;
 
-    constructor(logger: Logger) {
+    public static setLogger(logger: Logger) {
         this.logger = logger;
     }
 
@@ -51,6 +51,7 @@ export class ErrorHandlingMiddleware {
 
         let code: number;
         let data: any;
+
         if (coreHttpError) {
             code = this.identifyHttpCode(coreHttpError);
             data = coreHttpError.data;
@@ -70,7 +71,10 @@ export class ErrorHandlingMiddleware {
 
     protected logError(error: Error): void {
         const code = this.identifyHttpCode(error);
-        code === HttpCode.InternalServer ? this.logger.fatal(error as any) : this.logger.error(error as any);
+
+        code === HttpCode.InternalServer
+            ? ErrorHandlingMiddleware.logger.fatal(error as any)
+            : ErrorHandlingMiddleware.logger.error(error as any);
     }
 
     protected createCoreHttpError(error: Error): CoreHttpError | null {
@@ -95,6 +99,7 @@ export class ErrorHandlingMiddleware {
 
             case HttpCode.EntityTooLarge:
                 const bodyParserError = (error as any) as BodyParserError;
+
                 if (undefined !== bodyParserError.limit && undefined !== bodyParserError.length) {
                     result = new EntityTooLargeError(
                         `${error.message} (request ${bodyParserError.length}, limit ${bodyParserError.limit})`
@@ -110,6 +115,7 @@ export class ErrorHandlingMiddleware {
 
     protected identifyHttpCode(error: Error): number {
         let code = HttpCode.InternalServer;
+
         if (error instanceof HttpError) {
             code = error.httpCode;
         } else if (error instanceof CoreHttpError) {
@@ -117,6 +123,7 @@ export class ErrorHandlingMiddleware {
         } else if (undefined !== ((error as any) as BodyParserError).status) {
             code = ((error as any) as BodyParserError).status;
         }
+
         return code;
     }
 

@@ -5,11 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const log4js_1 = require("log4js");
+var ErrorHandlingMiddleware_1;
 const routing_controllers_1 = require("routing-controllers");
 const http_errors_1 = require("@c7s/http-errors");
 var HttpCode;
@@ -19,8 +16,8 @@ var HttpCode;
     HttpCode[HttpCode["InternalServer"] = 500] = "InternalServer";
     HttpCode[HttpCode["EntityTooLarge"] = 413] = "EntityTooLarge";
 })(HttpCode || (HttpCode = {}));
-let ErrorHandlingMiddleware = class ErrorHandlingMiddleware {
-    constructor(logger) {
+let ErrorHandlingMiddleware = ErrorHandlingMiddleware_1 = class ErrorHandlingMiddleware {
+    static setLogger(logger) {
         this.logger = logger;
     }
     error(error, {}, response, next) {
@@ -46,7 +43,9 @@ let ErrorHandlingMiddleware = class ErrorHandlingMiddleware {
     }
     logError(error) {
         const code = this.identifyHttpCode(error);
-        code === HttpCode.InternalServer ? this.logger.fatal(error) : this.logger.error(error);
+        code === HttpCode.InternalServer
+            ? ErrorHandlingMiddleware_1.logger.fatal(error)
+            : ErrorHandlingMiddleware_1.logger.error(error);
     }
     createCoreHttpError(error) {
         let result = null;
@@ -93,9 +92,8 @@ let ErrorHandlingMiddleware = class ErrorHandlingMiddleware {
         return new http_errors_1.ClassValidatorError(errors, envelopeName);
     }
 };
-ErrorHandlingMiddleware = __decorate([
-    routing_controllers_1.Middleware({ type: 'after' }),
-    __metadata("design:paramtypes", [log4js_1.Logger])
+ErrorHandlingMiddleware = ErrorHandlingMiddleware_1 = __decorate([
+    routing_controllers_1.Middleware({ type: 'after' })
 ], ErrorHandlingMiddleware);
 exports.ErrorHandlingMiddleware = ErrorHandlingMiddleware;
 //# sourceMappingURL=ErrorHandlingMiddleware.js.map

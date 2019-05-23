@@ -3,7 +3,7 @@ import { LogConfig, LogCategoryConfig } from '@chaika/config';
 export declare class LoggerFactory {
     protected readonly logConfig: LogConfig;
     protected isLoggerLibInitialized: boolean;
-    constructor(consfig: LogConfig);
+    constructor(config: LogConfig);
     create(category: string): log4js.Logger;
     protected initializeLoggerLib(): void;
     protected getLoggerLibConfig(): {

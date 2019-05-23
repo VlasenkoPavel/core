@@ -35,7 +35,7 @@ class CommonAppContext {
         this.configs.postgres.migrations = this.configs.postgres.migrations.map(path => this.makePath(path));
     }
 }
-CommonAppContext.pathRelation = '../../../../';
+CommonAppContext.pathRelation = '../../../../../';
 CommonAppContext.configDir = './config';
 exports.CommonAppContext = CommonAppContext;
 //# sourceMappingURL=CommonAppContext.js.map

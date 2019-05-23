@@ -4,7 +4,7 @@ import { DbConnector, TypeormLogger, LoggerFactory } from '../';
 import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chaika/config';
 
 export abstract class CommonAppContext {
-    public static pathRelation =  '../../../../';
+    public static pathRelation =  '../../../../../';
     public static configDir = './config';
 
     protected configs: {

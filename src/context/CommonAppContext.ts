@@ -4,7 +4,7 @@ import { DbConnector, TypeormLogger, LoggerFactory } from '../';
 import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chaika/config';
 
 export abstract class CommonAppContext {
-    public static pathPrefix =  '../../../../';
+    public static pathRelation =  '../../../../';
     public static configDir = './config';
 
     protected configs: {
@@ -38,7 +38,7 @@ export abstract class CommonAppContext {
     }
 
     protected makePath(filePath: string) {
-        return path.resolve(__dirname, '../../../../../', filePath);
+        return path.resolve(__dirname, CommonAppContext.pathRelation, filePath);
     }
 
     private async configurePostgres(): Promise<void> {

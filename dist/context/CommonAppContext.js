@@ -27,7 +27,7 @@ class CommonAppContext {
         await this.configurePostgres();
     }
     makePath(filePath) {
-        return path.resolve(__dirname, '../../../../', filePath);
+        return path.resolve(__dirname, CommonAppContext.pathRelation, filePath);
     }
     async configurePostgres() {
         this.configs.postgres = await this.configFactory.create(config_1.PostgresConfig);
@@ -35,7 +35,7 @@ class CommonAppContext {
         this.configs.postgres.migrations = this.configs.postgres.migrations.map(path => this.makePath(path));
     }
 }
-CommonAppContext.pathPrefix = '../../../../';
+CommonAppContext.pathRelation = '../../../../../';
 CommonAppContext.configDir = './config';
 exports.CommonAppContext = CommonAppContext;
 //# sourceMappingURL=CommonAppContext.js.map

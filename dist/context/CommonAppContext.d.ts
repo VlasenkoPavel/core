@@ -1,6 +1,7 @@
 import { DbConnector, TypeormLogger, LoggerFactory } from '../';
 import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chaika/config';
-export declare abstract class CommonAppContext {
+import { Context } from './Context';
+export declare abstract class CommonAppContext extends Context {
     static pathRelation: string;
     static configDir: string;
     protected configs: {

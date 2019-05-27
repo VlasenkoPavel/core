@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mergeContexts_1 = require("utils/mergeContexts");
-class CommonAppContext {
+class Context {
     merge(context) {
         return mergeContexts_1.mergeContexts(this, context);
     }
@@ -15,5 +15,5 @@ class CommonAppContext {
         return extendedContext.params = source;
     }
 }
-exports.CommonAppContext = CommonAppContext;
+exports.Context = Context;
 //# sourceMappingURL=Context.js.map

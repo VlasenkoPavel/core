@@ -1,7 +1,8 @@
 import { mergeContexts } from 'utils/mergeContexts';
 import { Parameterized } from 'types';
 
-export abstract class CommonAppContext {
+export abstract class Context {
+
     public merge<T extends object>(context: T): this & T {
         return mergeContexts(this, context);
     }
@@ -18,4 +19,5 @@ export abstract class CommonAppContext {
 
         return extendedContext.params = source as  Parameterized<this, T>;
     }
+
 }

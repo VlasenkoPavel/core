@@ -2,8 +2,9 @@ import * as path from 'path';
 
 import { DbConnector, TypeormLogger, LoggerFactory, mergeContexts } from '../';
 import { PostgresConfig, ConfigFileChain, ConfigFactory, LogConfig } from '@chaika/config';
+import { Context } from './Context';
 
-export abstract class CommonAppContext {
+export abstract class CommonAppContext extends Context {
     public static pathRelation =  '../../../../../';
     public static configDir = './config';
 

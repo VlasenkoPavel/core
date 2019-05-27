@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const __1 = require("../");
 const config_1 = require("@chaika/config");
-class CommonAppContext {
+const Context_1 = require("./Context");
+class CommonAppContext extends Context_1.Context {
     constructor() {
+        super(...arguments);
         this.configs = {};
     }
     get configFileChain() {

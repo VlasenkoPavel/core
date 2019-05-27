@@ -1,5 +1,5 @@
 import { mergeContexts } from 'utils/mergeContexts';
-import { Parameterized } from 'types';
+import { Parameterized } from '../types';
 
 export abstract class Context {
 

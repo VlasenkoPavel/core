@@ -12,9 +12,9 @@ exports.createInjectedDecorator = (context) => (target) => {
                     this[key] = context[key];
                 }
             });
-            this.__proto__ = constructor.prototype;
         }
     }
+    Alternate.prototype = original.prototype;
     const newConstructor = function (...args) {
         return new Alternate(original, args);
     };

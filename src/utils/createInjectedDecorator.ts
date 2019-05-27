@@ -15,10 +15,10 @@ export const createInjectedDecorator = (context: Object): ClassDecorator =>
                     this[key] = context[key];
                 }
             });
-
-            (this as any).__proto__ = constructor.prototype;
         }
     }
+
+    Alternate.prototype = original.prototype;
 
     const newConstructor = function(...args: any[]) {
         return new Alternate(original, args);

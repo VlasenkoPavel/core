@@ -11,3 +11,6 @@ export interface IContainer {
 export interface Class<T = object, P = any> extends Function {
     new (...args: P[]): T;
 }
+export declare type Parameterized<T extends Object, S extends Object> = T & {
+    params: S;
+};
